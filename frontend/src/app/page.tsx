@@ -1,69 +1,44 @@
-/**
- * Landing page with links to authentication.
- */
-import Link from "next/link";
-import { Button } from "@/components/ui";
+
+import { Button } from '@/components/ui/button';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { ArrowRight, GraduationCap } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
+  const heroImage = PlaceHolderImages.find(p => p.id === 'hero-students');
+
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-primary-50 to-gray-100 p-4">
-      <div className="text-center space-y-6 max-w-2xl">
-        <h1 className="text-5xl font-bold text-gray-900 mb-4">
-          Welcome to Todo App
+    <div className="flex flex-col items-center text-center animate-fade-in-up">
+      <div className="flex items-center justify-center gap-2 mb-4">
+        <GraduationCap className="h-10 w-10 text-primary" />
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">
+          StudentVerse
         </h1>
-        <p className="text-xl text-gray-600 mb-8">
-          Organize your tasks efficiently with our simple and powerful todo
-          application. Sign in to get started.
-        </p>
-
-        <div className="flex gap-4 justify-center">
-          <Link href="/auth/login">
-            <Button variant="primary" size="lg">
-              Sign In
-            </Button>
-          </Link>
-          <Link href="/auth/register">
-            <Button variant="secondary" size="lg">
-              Create Account
-            </Button>
-          </Link>
-        </div>
-
-        <div className="mt-12 pt-8 border-t border-gray-300">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-            Features
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="p-4">
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">
-                Secure Authentication
-              </h3>
-              <p className="text-gray-600">
-                Your data is protected with JWT-based authentication and bcrypt
-                password hashing.
-              </p>
-            </div>
-            <div className="p-4">
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">
-                Task Management
-              </h3>
-              <p className="text-gray-600">
-                Create, update, complete, and delete tasks with an intuitive
-                interface.
-              </p>
-            </div>
-            <div className="p-4">
-              <h3 className="font-semibold text-lg text-gray-900 mb-2">
-                Multi-User Support
-              </h3>
-              <p className="text-gray-600">
-                Each user has their own private workspace with isolated task
-                lists.
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
-    </main>
+      <p className="max-w-2xl text-lg text-muted-foreground md:text-xl mb-6">
+        The all-in-one solution for managing students efficiently and effortlessly.
+        Built with modern technology for a seamless experience.
+      </p>
+      <Link href="/students">
+        <Button size="lg">
+          Get Started
+          <ArrowRight className="ml-2 h-5 w-5" />
+        </Button>
+      </Link>
+      {heroImage && (
+        <div className="relative mt-12 w-full max-w-4xl aspect-[3/2] rounded-xl overflow-hidden shadow-2xl shadow-primary/20">
+          <Image
+            src={heroImage.imageUrl}
+            alt={heroImage.description}
+            fill
+            className="object-cover"
+            priority
+            data-ai-hint={heroImage.imageHint}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+        </div>
+      )}
+    </div>
   );
 }
