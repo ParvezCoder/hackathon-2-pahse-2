@@ -3,6 +3,7 @@
 
 ## Core Principles
 
+<!-- # develop by Engneer Parvez Ahmed (GIAIC 00115280) -->
 ### [PRINCIPLE_1_NAME]
 <!-- Example: I. Library-First -->
 [PRINCIPLE_1_DESCRIPTION]
